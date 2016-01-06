@@ -1,0 +1,48 @@
+{
+  "name": "generator-frontsize",
+  "version": "0.0.1",
+  "description": "Yeoman generator for Frontsize",
+  "keywords": [
+    "yeoman-generator",
+    "framework",
+    "component",
+    "frontsize",
+    "css",
+    "front-end",
+    "framework",
+    "responsive",
+    "theme",
+    "compile sass",
+    "css nesting",
+    "css variable",
+    "gradients css",
+    "gradients css3",
+    "sass",
+    "sass compiler",
+    "sass css",
+    "sass mixins",
+    "lesscss",
+    "mixins",
+    "nested css",
+    "parser",
+    "preprocessor",
+    "style",
+    "styles",
+    "stylesheet",
+    "variables in css",
+    "css sass",
+    "modal"
+  ],
+  "author": "Alessandro Minoccheri",
+  "repository": "AlessandroMinoccheri/generator-frontsize",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "yeoman-generator": "^0.18.9"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  },
+  "license": "MIT"
+}
