@@ -14,7 +14,7 @@ describe('Frontsize generator test', function () {
         return;
       }
 
-      this.app = helpers.createGenerator('frontsize-sass', [
+      this.app = helpers.createGenerator('frontsize', [
         '../../app'
       ]);
 
