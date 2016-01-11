@@ -2,13 +2,19 @@
 
 [![Build Status](https://api.travis-ci.org/AlessandroMinoccheri/generator-frontsize.png)](https://travis-ci.org/AlessandroMinoccheri/generator-frontsize)
 
-Simple and easy way to install frontsize-sass inside your project! 
+Simple and easy way to install frontsize-sass with yeoman inside your project! 
 
 ## Getting Started
 
-Install: npm install -g generator-frontsize
+Install: 
+```
+npm install -g generator-frontsize
+```
 
-Usage: yo frontsize
+Usage: 
+```
+yo frontsize
+```
 
 ---
 ##License
