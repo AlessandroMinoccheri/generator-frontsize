@@ -5,7 +5,7 @@ var absorb = require('absorb');
 var path = require('path');
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var install = '';
+var pathInstall = '';
 
 var Generator = module.exports = function Generator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
@@ -21,10 +21,18 @@ Generator.prototype.askFor = function askFor(argument) {
         name: 'install',
         message: 'Would you like to install a frontsize theme?',
         choices: options
+    },{
+        when: function (response) {
+            return response.install == 'yes';
+        },
+        type: 'input',
+        name: 'path',
+        message: 'Where do you want to install frontsize theme?',
+        defaults: 'css/frontsize'
     }];
 
     this.prompt(prompts, function (props) {
-        this.install = props.install;
+        this.pathInstall = props.path;
         cb();
     }.bind(this));
 };
@@ -73,10 +81,5 @@ Generator.prototype.frontsizeFiles = function frontsizeFiles() {
         fs.createReadStream(directory + '/frontsize-sass/package.json').pipe(fs.createWriteStream('./package.json'));
     }
 
-    if(this.install == 'yes'){
     
-    }
-    else{
-    
-    }
 };
