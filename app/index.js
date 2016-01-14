@@ -34,18 +34,20 @@ Generator.prototype.frontsizeFiles = function frontsizeFiles() {
     //check if package.json exists in root
     if (fs.existsSync('./package.json')) {
         console.log('Found file');
+        
     }
     else{
         console.log('Not Found file');
         var directory = 'bower_components';
+        var pattern = /\/$/;
         if (fs.existsSync('./.bowerrc')) {
             var obj = JSON.parse(fs.readFileSync('./.bowerrc', 'utf8'));
             if(obj.directory !== undefined){
                 directory = obj.directory;
             }
         }
-       
-        fs.createReadStream('./ ' + directory + 'test.log').pipe(fs.createWriteStream('newLog.log'));
+        directory = directory.replace(pattern, '');
+        fs.createReadStream(directory + '/frontsize-sass/package.json').pipe(fs.createWriteStream('./package.json'));
     }
 
     if(this.install == 'yes'){
