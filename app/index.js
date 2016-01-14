@@ -81,5 +81,5 @@ Generator.prototype.frontsizeFiles = function frontsizeFiles() {
         fs.createReadStream(directory + '/frontsize-sass/package.json').pipe(fs.createWriteStream('./package.json'));
     }
 
-    
+    //quando inserisco il path devo verificare che non esista e lo creo, se esiste gia la cartella theme al suo interno dare errore
 };
