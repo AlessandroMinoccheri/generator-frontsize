@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require('fs');
+var absorb = require('absorb');
 var path = require('path');
 var util = require('util');
 var yeoman = require('yeoman-generator');
@@ -31,22 +32,44 @@ Generator.prototype.askFor = function askFor(argument) {
 Generator.prototype.frontsizeFiles = function frontsizeFiles() {
     this.bowerInstall('frontsize-sass', { save: true });
 
+    var directory = 'bower_components';
+    var pattern = /\/$/;
+    if (fs.existsSync('./.bowerrc')) {
+        var obj = JSON.parse(fs.readFileSync('./.bowerrc', 'utf8'));
+        if(obj.directory !== undefined){
+            directory = obj.directory;
+        }
+    }
+    directory = directory.replace(pattern, '');
+
     //check if package.json exists in root
     if (fs.existsSync('./package.json')) {
-        console.log('Found file');
+        var dependenciesFrontsize = '';
+        var dependenciesRoot = '';
         
+        var packageJsonFrontsize = JSON.parse(fs.readFileSync(directory + '/frontsize-sass/package.json', 'utf8'));
+        if(packageJsonFrontsize.dependencies !== undefined){
+            dependenciesFrontsize = packageJsonFrontsize.dependencies;
+        }
+        var packageJsonRoot = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+        if(packageJsonRoot.dependencies !== undefined){
+            dependenciesRoot = packageJsonRoot.dependencies;
+        }
+
+        if(dependenciesRoot != ''){
+            packageJsonRoot.dependencies = absorb(dependenciesRoot, dependenciesFrontsize);
+            fs.writeFile('./package.json', JSON.stringify(packageJsonRoot), function(err) {
+                if(err) {
+                    return console.log(err);
+                }
+
+            }); 
+        }
+        else{
+
+        }
     }
     else{
-        console.log('Not Found file');
-        var directory = 'bower_components';
-        var pattern = /\/$/;
-        if (fs.existsSync('./.bowerrc')) {
-            var obj = JSON.parse(fs.readFileSync('./.bowerrc', 'utf8'));
-            if(obj.directory !== undefined){
-                directory = obj.directory;
-            }
-        }
-        directory = directory.replace(pattern, '');
         fs.createReadStream(directory + '/frontsize-sass/package.json').pipe(fs.createWriteStream('./package.json'));
     }
 

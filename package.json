@@ -39,6 +39,7 @@
     "test": "mocha"
   },
   "dependencies": {
+    "absorb": "^1.0.1",
     "yeoman-generator": "^0.18.9"
   },
   "devDependencies": {
