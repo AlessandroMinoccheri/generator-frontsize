@@ -58,16 +58,16 @@ Generator.prototype.frontsizeFiles = function frontsizeFiles() {
 
         if(dependenciesRoot != ''){
             packageJsonRoot.dependencies = absorb(dependenciesRoot, dependenciesFrontsize);
-            fs.writeFile('./package.json', JSON.stringify(packageJsonRoot), function(err) {
-                if(err) {
-                    return console.log(err);
-                }
-
-            }); 
         }
         else{
-
+            packageJsonRoot.dependencies = dependenciesFrontsize;
         }
+
+        fs.writeFile('./package.json', JSON.stringify(packageJsonRoot, null, 2), function(err) {
+            if(err) {
+                return console.log(err);
+            }
+        }); 
     }
     else{
         fs.createReadStream(directory + '/frontsize-sass/package.json').pipe(fs.createWriteStream('./package.json'));
