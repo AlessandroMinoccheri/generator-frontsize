@@ -46,7 +46,8 @@ Generator.prototype.frontsizeFiles = function frontsizeFiles() {
         function(){
             here.bowerInstall('frontsize-sass', { save: true });
         }
-    ], function done(){
+    ], function(){
+        console.log("HERE!!!");
         var directory = 'bower_components';
         var pattern = /\/$/;
         if (fs.existsSync('./.bowerrc')) {
