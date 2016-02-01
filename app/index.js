@@ -27,7 +27,7 @@ Generator.prototype.askFor = function askFor(argument) {
         },
         type: 'input',
         name: 'path',
-        message: 'Where do you want to install frontsize theme?',
+        message: 'Where do you want to install frontsize theme? (Ex: css/frontsize/your_theme_name',
         defaults: 'css/frontsize'
     }];
 
@@ -82,4 +82,13 @@ Generator.prototype.frontsizeFiles = function frontsizeFiles() {
     }
 
     //quando inserisco il path devo verificare che non esista e lo creo, se esiste gia la cartella theme al suo interno dare errore
+    if(fs.exists(this.pathInstall)){
+        return console.log('Path already exist!');
+    }
+    else{
+        //create directory
+        fs.mkdirSync(this.pathInstall);
+
+        //move files
+    }
 };
