@@ -40,6 +40,10 @@
   },
   "dependencies": {
     "absorb": "^1.0.1",
+    "fs": "0.0.2",
+    "mv": "^2.1.1",
+    "path": "^0.12.7",
+    "util": "^0.10.3",
     "yeoman-generator": "^0.18.9"
   },
   "devDependencies": {

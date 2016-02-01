@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require('fs');
+var mv = require('mv');
 var absorb = require('absorb');
 var path = require('path');
 var util = require('util');
@@ -27,7 +28,7 @@ Generator.prototype.askFor = function askFor(argument) {
         },
         type: 'input',
         name: 'path',
-        message: 'Where do you want to install frontsize theme? (Ex: css/frontsize/your_theme_name',
+        message: 'Where do you want to install frontsize theme? (Ex: css/frontsize/your_theme_name)',
         defaults: 'css/frontsize'
     }];
 
@@ -90,5 +91,8 @@ Generator.prototype.frontsizeFiles = function frontsizeFiles() {
         fs.mkdirSync(this.pathInstall);
 
         //move files
+        mv('vendor/frontsize-sass/themes/default/', this.pathInstall + '/', {mkdirp: true}, function(err) {
+            return console.log('Error moving files!');
+        });
     }
 };
