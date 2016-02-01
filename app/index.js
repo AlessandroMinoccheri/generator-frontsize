@@ -2,6 +2,8 @@
 
 var fs = require('fs');
 var mv = require('mv');
+var mv = require('async');
+var mkdirp = require('mkdirp');
 var absorb = require('absorb');
 var path = require('path');
 var util = require('util');
@@ -38,9 +40,7 @@ Generator.prototype.askFor = function askFor(argument) {
     }.bind(this));
 };
 
-Generator.prototype.frontsizeFiles = function frontsizeFiles() {
-    this.bowerInstall('frontsize-sass', { save: true });
-
+function proceedAfterDownload(){
     var directory = 'bower_components';
     var pattern = /\/$/;
     if (fs.existsSync('./.bowerrc')) {
@@ -88,11 +88,19 @@ Generator.prototype.frontsizeFiles = function frontsizeFiles() {
     }
     else{
         //create directory
-        fs.mkdirSync(this.pathInstall);
+        mkdirp(this.pathInstall);
 
         //move files
-        mv('vendor/frontsize-sass/themes/default/', this.pathInstall + '/', {mkdirp: true}, function(err) {
-            return console.log('Error moving files!');
-        });
+        //mv('vendor/frontsize-sass/themes/default/', this.pathInstall + '/', {mkdirp: true}, function(err) {
+        //    return console.log('Error moving files! ' + err);
+        //});
     }
+}
+
+Generator.prototype.frontsizeFiles = function frontsizeFiles() {
+    async.parallel([
+        function(){
+            this.bowerInstall('frontsize-sass', { save: true });
+        }
+    ], proceedAfterDownload);
 };
