@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var mv = require('mv');
-var mv = require('async');
+var async = require('async');
 var mkdirp = require('mkdirp');
 var absorb = require('absorb');
 var path = require('path');
@@ -98,9 +98,10 @@ function proceedAfterDownload(){
 }
 
 Generator.prototype.frontsizeFiles = function frontsizeFiles() {
+    var here = this;
     async.parallel([
         function(){
-            this.bowerInstall('frontsize-sass', { save: true });
+            here.bowerInstall('frontsize-sass', { save: true });
         }
     ], proceedAfterDownload);
 };
