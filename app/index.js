@@ -42,12 +42,13 @@ Generator.prototype.askFor = function askFor(argument) {
 
 Generator.prototype.frontsizeFiles = function frontsizeFiles() {
     var here = this;
-    async.parallel([
-        function(){
+    //async.parallel([
+        //function(callback){
             console.info('download');
             here.bowerInstall('frontsize-sass', { save: true });
-        }], 
-        function(error, results) {
+        //    callback(null, 'xyz\n');
+        //}], 
+        //function(error, results) {
             console.info('callback');
             var directory = 'bower_components';
             var pattern = /\/$/;
@@ -103,6 +104,6 @@ Generator.prototype.frontsizeFiles = function frontsizeFiles() {
                     return console.log('Error moving files! ' + err);
                 });
             }
-        }
-    );
+        //}
+    //);
 };
