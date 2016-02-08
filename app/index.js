@@ -40,13 +40,14 @@ Generator.prototype.askFor = function askFor(argument) {
     }.bind(this));
 };
 
-Generator.prototype.install = function myFiles() {
+Generator.prototype.install = function downloadFiles() {
     console.info('download');
     this.bowerInstall('frontsize-sass', { save: true });
 };
 
 Generator.prototype.end = function moveFiles() {
     console.info('move');
+    var here = this;
     var directory = 'bower_components';
     var pattern = /\/$/;
     if (fs.existsSync('./.bowerrc')) {
