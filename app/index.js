@@ -97,16 +97,28 @@ Generator.prototype.end = function moveFiles() {
         //create directory
         mkdirp(here.pathInstall);
 
+        if(here.pathInstall.substr(here.pathInstall.length - 1) != '/'){
+            here.pathInstall = here.pathInstall + '/';
+        }
+
         //move themes directory
-        mv(directory + '/frontsize-sass/themes/default/', here.pathInstall + '/', {mkdirp: true}, function(err) {
+        mv(directory + '/frontsize-sass/themes/default/', here.pathInstall, {mkdirp: true}, function(err) {
             if((err != undefined) && (err != null)){
                 return console.log('Error moving theme files! ' + err);
             }
-        });
-
-        mv(directory + '/frontsize-sass/compile.scss', here.pathInstall + '/compile.scss', function(err) {
-            if((err != undefined) && (err != null)){
-                return console.log('Error moving file compile.scss! ' + err);
+            else{
+                mv(directory + '/frontsize-sass/compile.scss', here.pathInstall + 'compile.scss', function(err) {
+                    if((err != undefined) && (err != null)){
+                        return console.log('Error moving file compile.scss! ' + err);
+                    }
+                    else{
+                        mv(directory + '/frontsize-sass/gulpfile.js', 'gulpfile.js', function(err) {
+                            if((err != undefined) && (err != null)){
+                                return console.log('Error moving file gulpfile.js! ' + err);
+                            }
+                        });
+                    }
+                });
             }
         });
     }
