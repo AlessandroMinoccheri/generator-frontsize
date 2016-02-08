@@ -116,6 +116,13 @@ Generator.prototype.end = function moveFiles() {
                             if((err != undefined) && (err != null)){
                                 return console.log('Error moving file gulpfile.js! ' + err);
                             }
+                            else{
+                                mv(directory + '/frontsize-sass/frontsize.yml.dist', 'frontsize.yml', function(err) {
+                                    if((err != undefined) && (err != null)){
+                                        return console.log('Error moving file frontsize.yml! ' + err);
+                                    }
+                                });
+                            }
                         });
                     }
                 });
