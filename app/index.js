@@ -96,10 +96,15 @@ Generator.prototype.end = function moveFiles() {
     else{
         //create directory
         mkdirp(here.pathInstall);
-    
+
         //move files
         mv(directory + '/frontsize-sass/themes/default/', here.pathInstall + '/', {mkdirp: true}, function(err) {
-            return console.log('Error moving files! ' + err);
+            if((err != undefined) && (err != null)){
+                return console.log('Installation completed succesfully!');
+            }
+            else{
+                return console.log('Error moving files! ' + err);
+            }
         });
     }
 };
