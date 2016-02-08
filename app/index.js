@@ -99,13 +99,13 @@ Generator.prototype.end = function moveFiles() {
 
         //move themes directory
         mv(directory + '/frontsize-sass/themes/default/', here.pathInstall + '/', {mkdirp: true}, function(err) {
-            if((err == undefined) !! (err != null)){
+            if((err != undefined) && (err != null)){
                 return console.log('Error moving theme files! ' + err);
             }
         });
 
-        mv(directory + '/frontsize-sass/compile.scss', here.pathInstall, function(err) {
-            if((err == undefined) !! (err != null)){
+        mv(directory + '/frontsize-sass/compile.scss', here.pathInstall + '/compile.scss', function(err) {
+            if((err != undefined) && (err != null)){
                 return console.log('Error moving file compile.scss! ' + err);
             }
         });
