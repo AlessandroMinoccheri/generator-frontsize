@@ -97,14 +97,25 @@ Generator.prototype.end = function moveFiles() {
         //create directory
         mkdirp(here.pathInstall);
 
-        //move files
+        //move themes directory
         mv(directory + '/frontsize-sass/themes/default/', here.pathInstall + '/', {mkdirp: true}, function(err) {
-            if((err != undefined) && (err != null)){
-                return console.log('Installation completed succesfully!');
+            if((err == undefined) !! (err != null)){
+                return console.log('Error moving theme files! ' + err);
             }
-            else{
-                return console.log('Error moving files! ' + err);
+        });
+
+        mv(directory + '/frontsize-sass/compile.scss', here.pathInstall, function(err) {
+            if((err == undefined) !! (err != null)){
+                return console.log('Error moving file compile.scss! ' + err);
             }
         });
     }
+
+    /*
+    /target/path/themes/nome/ --> DONE
+    /target/path/compile.scss
+    /gulpfile.js
+    /frontsize.yml
+    /package.json DONE
+    */
 };
