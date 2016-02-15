@@ -129,12 +129,4 @@ Generator.prototype.end = function moveFiles() {
             }
         });
     }
-
-    /*
-    /target/path/themes/nome/ --> DONE
-    /target/path/compile.scss
-    /gulpfile.js
-    /frontsize.yml
-    /package.json DONE
-    */
 };
